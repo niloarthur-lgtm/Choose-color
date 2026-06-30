@@ -1,0 +1,81 @@
+* {
+  margin: 0;
+  padding: 0;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+body {
+  background-color: var(--bodyColor);
+  transition: 0.5s;
+}
+
+.slider-container {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) rotate(0deg);
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  align-items: center;
+  justify-content: center;
+}
+
+input[type="range"] {
+  
+  -webkit-appearance: none;
+  appearance: none;
+  width: 200px;
+  height: 30px;
+  border-radius: 10px;
+  
+  /* Usa a variável --progresso que o JS vai controlar */
+  background: linear-gradient(to right, #000000E6 var(--progresso, 50%), #e0e0e0 var(--progresso, 50%));
+  
+}
+
+/* O estilo do botão (thumb) continua o mesmo */
+input[type="range"]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  background: #42445A;
+  height: 40px;
+  width: 8px;
+  border-radius: 3px;
+  box-shadow: 2px 2px 1px rgba(0, 0, 0, 0.2);
+}
+
+#buttonBody {
+  position: absolute;
+  top: 80%;
+left: 80%;
+  width: 30px;
+  height: 30px;
+  background: transparent;
+  border: none;
+}
+svg{
+  fill: var(--colorFill) !important;
+transition: 10s;
+}
+
+.colorContainer{
+  position: relative;
+  width: 200px;
+  height: 200px;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  z-index: -1;
+  transition: 1s;
+}
+input[type="name"] {
+  font-size: 25px;
+  text-align: center;
+  border: none;
+  background: none;
+  width: 100%;
+  transition: 0.5s;
+}
