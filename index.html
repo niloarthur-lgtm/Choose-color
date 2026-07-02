@@ -3,7 +3,7 @@
 
 <head>
   <meta charset="UTF-8">
-   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Exemplo Input Range</title>
   <link rel="stylesheet" href="css/style.css">
   <script src="js/script.js" defer></script>
@@ -12,13 +12,15 @@
 <body>
   
   <div class="slider-container">
-    
-    <div class="colorContainer">
-      <input type="name" id="textInput" value="" />
-      <button onclick="bodyColorChange()" id="buttonBody"><svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#1f1f1f"><path d="M200-200v-240h80v160h160v80H200Zm480-320v-160H520v-80h240v240h-80Z"/></svg></button>
+    <div class="colorContainerContainer">
+      <div class="colorContainer">
+        <input type="name" id="textInput" value="" />
+      </div>
+      <div class="toolbar">
+        <button onclick="bodyColorChange()" id="buttonBody"></button>
+      </div>
     </div>
     <!--<input type="range" min="0" max="100" value="50" step="1">-->
-    
   </div>
   
 </body>
