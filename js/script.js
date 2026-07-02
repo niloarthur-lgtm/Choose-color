@@ -1,82 +1,91 @@
-const sliderContainer = document.querySelector(`.slider-container`)
-const colorContainer = document.querySelector('.colorContainer')
-const textInput = document.querySelector('#textInput')
-const buttonBody = document.querySelector('#buttonBody')
-
-let sliders = []
-for (let i = 0; i < 3; i++) {
-    let inputRange = document.createElement('input')
-    inputRange.type = 'range'
-    inputRange.min = '0'
-    inputRange.max = '255'
-    inputRange.value = '30'
-    inputRange.step = '1'
-    inputRange.id = i
-    
-    sliders.push(inputRange)
-    
-    sliderContainer.appendChild(inputRange)
+* {
+  margin: 0;
+  padding: 0;
+  font-family: Arial, Helvetica, sans-serif;
 }
 
-const slider = document.querySelector('input[type="range"]');
-
-
-function atualizar(index) {
-    // Calcula o percentual de forma simples
-    let s = sliders[index]
-        const pct = (s.value - s.min) / (s.max - s.min) * 100;
-        // Atualiza apenas a variável CSS
-    s.style.setProperty('--progresso',`${pct}%`)
-    // para comando para desenhar seguindo o input
-    mudarCor()
-}
-let bodyColor = false
-function mudarCor(){
-    if(bodyColor == true){
-            document.body.style.backgroundColor = `rgb(${sliders[0].value},${sliders[1].value},${sliders[2].value})`
-            colorContainer.style.backgroundColor = `transparent`
-            colorContainer.style.transform = 'scale(190%)'
-            buttonBody.innerHTML= `<svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#1f1f1f"><path d="M440-440v240h-80v-160H200v-80h240Zm160-320v160h160v80H520v-240h80Z"/></svg>`
-        }
-        else{
-            document.body.style.backgroundColor = 'white'
-        colorContainer.style.backgroundColor = `rgb(${sliders[0].value},${sliders[1].value},${sliders[2].value})`
-        colorContainer.style.transform = 'scale(100%)'
-        buttonBody.innerHTML= `<svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#1f1f1f"><path d="M200-200v-240h80v160h160v80H200Zm480-320v-160H520v-80h240v240h-80Z"/></svg>`
-        }
-        // cor de fundo
-        
-       textInput.value =`rgb(${sliders[0].value},${sliders[1].value},${sliders[2].value})`
-       // coloca o texto
-       
-       if(sliders[1].value < 100){
-           textInput.style.color = 'white'
-           document.documentElement.style.setProperty('--colorFill', 'white')
-       }
-       else{
-           textInput.style.color = 'black'
-           document.documentElement.style.setProperty('--colorFill', 'black')
-       }
-       // muda cor do text
-}
-function bodyColorChange(){
-    
-    if(bodyColor == true){
-        bodyColor = false
-        
-    }
-    else{
-        bodyColor = true
-        
-    }
-    
-    mudarCor()
+body {
+  background-color: var(--bodyColor);
+  transition: 0.5s;
 }
 
-sliders[0].addEventListener('input', () => { atualizar(0) })
-sliders[1].addEventListener('input', () => { atualizar(1) })
-sliders[2].addEventListener('input', () => { atualizar(2) })
+.slider-container {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) rotate(0deg);
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  align-items: center;
+  justify-content: center;
+}
 
-atualizar(0)
-atualizar(1)
-atualizar(2)
+input[type="range"] {
+  z-index: 10;
+  -webkit-appearance: none;
+  appearance: none;
+  width: 200px;
+  height: 30px;
+  border-radius: 10px;
+  
+  /* Usa a variável --progresso que o JS vai controlar */
+  background: linear-gradient(to right, #000000E6 var(--progresso, 50%), #e0e0e0 var(--progresso, 50%));
+  
+}
+
+/* O estilo do botão (thumb) continua o mesmo */
+input[type="range"]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  background: #42445A;
+  height: 40px;
+  width: 8px;
+  border-radius: 3px;
+  box-shadow: 2px 2px 1px rgba(0, 0, 0, 0.2);
+}
+.toolbar{
+  display: flex;
+  justify-content: end;
+  width: 100%;
+  
+  z-index: 1;
+}
+#buttonBody {
+  width: 25px;
+  height: 25px;
+  background: transparent;
+  border: none;
+  z-index: 100;
+  border-radius: 0 0 5px 5px;
+  zoom: 150%;
+  transition: 1s;
+}
+svg{
+  fill: var(--colorFill) !important;
+transition: 10s;
+
+
+}
+
+.colorContainer{
+  
+  width: 200px;
+  height: 200px;
+  border-radius: 10px 10px 0px 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  z-index: 1;
+  transition: 1s;
+}
+input[type="name"] {
+  font-size: 25px;
+  text-align: center;
+  border: none;
+  background: none;
+  width: 100%;
+  outline: none;
+  transition: 0.5s;
+      }
